@@ -363,8 +363,8 @@ function buildType(ref, type) {
             prop = prop.substring(1, prop.charAt(0) === "[" ? prop.length - 1 : prop.length);
             var jsType = toJsType(field);
             if (field.optional)
-                jsType = jsType + "|null";
-            typeDef.push("@property {" + jsType + "} " + (field.optional ? "[" + prop + "]" : prop) + " " + (field.comment || type.name + " " + field.name));
+                jsType = jsType + "";
+            typeDef.push("@property {" + jsType + "} " + (prop) + " " + (field.comment || type.name + " " + field.name));
         });
         push("");
         pushComment(typeDef);
@@ -391,7 +391,7 @@ function buildType(ref, type) {
             push("");
             var jsType = toJsType(field);
             if (field.optional && !field.map && !field.repeated && field.resolvedType instanceof Type)
-                jsType = jsType + "|null|undefined";
+                jsType = jsType + "";
             pushComment([
                 field.comment || type.name + " " + field.name + ".",
                 "@member {" + jsType + "} " + field.name,
